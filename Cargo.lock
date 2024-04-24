@@ -83,11 +83,23 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8ca26ef0159422fb77631dc9d17b102f253b876fe1586b03b803e63a309b4ee2"
 dependencies = [
  "bitflags 2.4.0",
- "cairo-sys-rs",
- "freetype-rs",
+ "cairo-sys-rs 0.18.0",
  "glib",
  "libc",
  "once_cell",
+ "thiserror",
+]
+
+[[package]]
+name = "cairo-rs"
+version = "0.19.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b2ac2a4d0e69036cf0062976f6efcba1aaee3e448594e6514bb2ddf87acce562"
+dependencies = [
+ "bitflags 2.4.0",
+ "cairo-sys-rs 0.19.2",
+ "freetype-rs",
+ "libc",
  "thiserror",
 ]
 
@@ -98,6 +110,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bd4d115132e01c0165e3bf5f56aedee8980b0b96ede4eb000b693c05a8adb8ff"
 dependencies = [
  "glib-sys",
+ "libc",
+ "system-deps",
+]
+
+[[package]]
+name = "cairo-sys-rs"
+version = "0.19.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fd3bb3119664efbd78b5e6c93957447944f16bdbced84c17a9f41c7829b81e64"
+dependencies = [
  "libc",
  "system-deps",
 ]
@@ -321,23 +343,24 @@ dependencies = [
 
 [[package]]
 name = "freetype-rs"
-version = "0.32.0"
+version = "0.35.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d59c337e64822dd56a3a83ed75a662a470736bdb3a9fabfb588dff276b94a4e0"
+checksum = "b1fad2be0bf06af23adddcf6cd143c94ff0ba3b329691f92d1a38dae5c5aeebf"
 dependencies = [
- "bitflags 1.3.2",
+ "bitflags 2.4.0",
  "freetype-sys",
  "libc",
 ]
 
 [[package]]
 name = "freetype-sys"
-version = "0.17.0"
+version = "0.20.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "643148ca6cbad6bec384b52fbe1968547d578c4efe83109e035c43a71734ff88"
+checksum = "0e7edc5b9669349acfda99533e9e0bcf26a51862ab43b08ee7745c55d28eb134"
 dependencies = [
  "cc",
  "libc",
+ "pkg-config",
 ]
 
 [[package]]
@@ -681,7 +704,7 @@ version = "2.57.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a7411554079bdc0af967356757e6c9b1a60fba1aa7ee95d9c80e170be8ea4892"
 dependencies = [
- "cairo-rs",
+ "cairo-rs 0.18.5",
  "cast",
  "cssparser",
  "data-url",
@@ -998,7 +1021,7 @@ version = "0.18.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "57036589a9cfcacf83f9e606d15813fc6bf03f0e9e69aa2b5e3bb85af86b38a5"
 dependencies = [
- "cairo-rs",
+ "cairo-rs 0.18.5",
  "glib",
  "libc",
  "pango",
@@ -1011,7 +1034,7 @@ version = "0.18.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fc3c8ff676a37e7a72ec1d5fc029f91c407278083d2752784ff9f5188c108833"
 dependencies = [
- "cairo-sys-rs",
+ "cairo-sys-rs 0.18.0",
  "glib-sys",
  "libc",
  "pango-sys",
@@ -1544,7 +1567,7 @@ name = "tiny-dfr"
 version = "0.2.0"
 dependencies = [
  "anyhow",
- "cairo-rs",
+ "cairo-rs 0.19.4",
  "drm",
  "freetype-rs",
  "input",
