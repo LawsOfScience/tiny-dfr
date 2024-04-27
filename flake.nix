@@ -35,6 +35,23 @@
               pkgs.gdk-pixbuf
               pkgs.libxml2
             ];
+
+            postPatch = ''
+              substituteInPlace src/main.rs \
+                --replace "/usr/share/tiny-dfr" "$out/share/tiny-dfr"
+              substituteInPlace src/config.rs \
+                --replace "/usr/share/tiny-dfr" "$out/share/tiny-dfr"
+              substituteInPlace share/tiny-dfr/config.toml \
+                --replace "/usr/share/tiny-dfr" "$out/share/tiny-dfr"
+            '';
+
+            postInstall = ''
+              mkdir -p $out/lib/udev/rules.d/
+              mkdir -p $out/share/tiny-dfr
+              
+              cp etc/udev/rules.d/*.rules $out/lib/udev/rules.d
+              cp share/tiny-dfr/* $out/share/tiny-dfr/
+            '';
           };
         }
       );
